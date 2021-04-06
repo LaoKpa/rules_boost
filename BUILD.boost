@@ -162,12 +162,12 @@ BOOST_CTX_ASM_SOURCES = selects.with_or({
         "libs/context/src/asm/make_x86_64_sysv_elf_gas.S",
         "libs/context/src/asm/ontop_x86_64_sysv_elf_gas.S",
     ],
-    ":osx_arm64": [
+    ":darwin_arm64": [
         "libs/context/src/asm/jump_arm64_aapcs_macho_gas.S",
         "libs/context/src/asm/make_arm64_aapcs_macho_gas.S",
         "libs/context/src/asm/ontop_arm64_aapcs_macho_gas.S",
     ],
-    ":osx_x86_64": [
+    ":darwin_x86_64": [
         "libs/context/src/asm/jump_x86_64_sysv_macho_gas.S",
         "libs/context/src/asm/make_x86_64_sysv_macho_gas.S",
         "libs/context/src/asm/ontop_x86_64_sysv_macho_gas.S",
@@ -186,7 +186,7 @@ boost_library(
         (":linux", ":android"): [
             "libs/context/src/posix/stack_traits.cpp",
         ],
-        ":osx": [
+        ":darwin": [
             "libs/context/src/posix/stack_traits.cpp",
         ],
         ":windows_x86_64": [
@@ -252,7 +252,7 @@ boost_library(
         ":linux": [
             "-lpthread",
         ],
-        ":osx": [
+        ":darwin": [
             "-lpthread",
         ],
         "//conditions:default": [],
@@ -421,7 +421,7 @@ boost_library(
     defines = [
         "BOOST_ASIO_SEPARATE_COMPILATION",
     ] + select({
-        ":osx": [
+        ":darwin": [
             "BOOST_ASIO_DISABLE_STD_EXPERIMENTAL_STRING_VIEW",
         ],
         "//conditions:default": [],
@@ -546,7 +546,7 @@ boost_library(
 boost_library(
     name = "compute",
     linkopts = select({
-        ":osx": [
+        ":darwin": [
             "-framework OpenCL",
         ],
         "//conditions:default": [
@@ -653,7 +653,7 @@ BOOST_CORO_SRCS = select({
     ":linux": [
         "libs/coroutine/src/posix/stack_traits.cpp",
     ],
-    ":osx": [
+    ":darwin": [
         "libs/coroutine/src/posix/stack_traits.cpp",
     ],
     ":windows_x86_64": [
@@ -1145,7 +1145,7 @@ boost_library(
         ":linux_arm": BOOST_LOCALE_POSIX_SOURCES,
         ":linux_ppc": BOOST_LOCALE_POSIX_SOURCES,
         ":linux_x86_64": BOOST_LOCALE_POSIX_SOURCES,
-        ":osx": BOOST_LOCALE_POSIX_SOURCES,
+        ":darwin": BOOST_LOCALE_POSIX_SOURCES,
         ":windows_x86_64": BOOST_LOCALE_WIN32_SOURCES,
     }),
     copts = select({
@@ -1153,7 +1153,7 @@ boost_library(
         ":linux_arm": BOOST_LOCALE_POSIX_COPTS,
         ":linux_ppc": BOOST_LOCALE_POSIX_COPTS,
         ":linux_x86_64": BOOST_LOCALE_POSIX_COPTS,
-        ":osx": BOOST_LOCALE_POSIX_COPTS,
+        ":darwin": BOOST_LOCALE_POSIX_COPTS,
         ":windows_x86_64": BOOST_LOCALE_WIN32_COPTS,
     }) + _w_no_deprecated,
     deps = [
@@ -1797,7 +1797,7 @@ BOOST_STACKTRACE_SOURCES = select({
     ":linux_x86_64": [
         "libs/stacktrace/src/backtrace.cpp",
     ],
-    ":osx": [
+    ":darwin": [
         "libs/stacktrace/src/addr2line.cpp",
     ],
     ":windows_x86_64": [
@@ -1810,7 +1810,7 @@ boost_library(
     name = "stacktrace",
     srcs = BOOST_STACKTRACE_SOURCES,
     defines = select({
-        ":osx": [
+        ":darwin": [
             "BOOST_STACKTRACE_GNU_SOURCE_NOT_REQUIRED",
         ],
         "//conditions:default": [],
@@ -1896,7 +1896,7 @@ boost_library(
             "libs/thread/src/pthread/once.cpp",
             "libs/thread/src/pthread/thread.cpp",
         ],
-        ":osx": [
+        ":darwin": [
             "libs/thread/src/pthread/once.cpp",
             "libs/thread/src/pthread/thread.cpp",
         ],
@@ -1910,7 +1910,7 @@ boost_library(
         (":linux", ":android"): [
             "libs/thread/src/pthread/once_atomic.cpp",
         ],
-        ":osx": [
+        ":darwin": [
             "libs/thread/src/pthread/once_atomic.cpp",
         ],
         ":windows_x86_64": [],
@@ -1919,7 +1919,7 @@ boost_library(
         ":linux": [
             "-lpthread",
         ],
-        ":osx": [
+        ":darwin": [
             "-lpthread",
         ],
         ":windows_x86_64": [],
@@ -1929,7 +1929,7 @@ boost_library(
         ":linux_arm": [],
         ":linux_ppc": [],
         ":linux_x86_64": [],
-        ":osx": [],
+        ":darwin": [],
         ":windows_x86_64": [
             "BOOST_ALL_NO_LIB",
             "BOOST_THREAD_BUILD_LIB",
