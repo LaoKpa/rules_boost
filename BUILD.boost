@@ -28,7 +28,7 @@ config_setting(
 config_setting(
     name = "darwin",
     constraint_values = [
-        "@bazel_tools//platforms:macos",
+        "@bazel_tools//platforms//os:macos",
     ],
     visibility = ["//visibility:public"],
 )
@@ -80,8 +80,8 @@ config_setting(
 config_setting(
     name = "darwin_arm64",
     constraint_values = [
-        "@bazel_tools//platforms:macos",
-        "@bazel_tools//platforms:arm64",
+        "@bazel_tools//platforms//os:macos",
+        "@bazel_tools//platforms//cpu:arm64",
     ],
     visibility = ["//visibility:public"],
 )
@@ -89,8 +89,8 @@ config_setting(
 config_setting(
     name = "darwin_x86_64",
     constraint_values = [
-        "@bazel_tools//platforms:macos",
-        "@bazel_tools//platforms:x86_64",
+        "@bazel_tools//platforms//os:macos",
+        "@bazel_tools//platforms//cpu:x86_64",
     ],
     visibility = ["//visibility:public"],
 )
