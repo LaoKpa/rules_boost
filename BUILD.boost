@@ -3,7 +3,7 @@ load("@bazel_skylib//lib:selects.bzl", "selects")
 load("@com_github_nelhage_rules_boost//:boost/boost.bzl", "boost_library", "boost_so_library", "hdr_list")
 
 _w_no_deprecated = selects.with_or({
-    (":linux", ":macos"): [
+    (":linux", ":darwin"): [
         "-Wno-deprecated-declarations",
     ],
     "//conditions:default": [],
