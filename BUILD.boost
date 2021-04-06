@@ -3,7 +3,7 @@ load("@bazel_skylib//lib:selects.bzl", "selects")
 load("@com_github_nelhage_rules_boost//:boost/boost.bzl", "boost_library", "boost_so_library", "hdr_list")
 
 _w_no_deprecated = selects.with_or({
-    (":linux", ":osx"): [
+    (":linux", ":darwin"): [
         "-Wno-deprecated-declarations",
     ],
     "//conditions:default": [],
@@ -26,9 +26,9 @@ config_setting(
 )
 
 config_setting(
-    name = "osx",
+    name = "darwin",
     constraint_values = [
-        "@bazel_tools//platforms:osx",
+        "@bazel_tools//platforms:macos",
     ],
     visibility = ["//visibility:public"],
 )
@@ -78,18 +78,18 @@ config_setting(
 )
 
 config_setting(
-    name = "osx_arm64",
+    name = "darwin_arm64",
     constraint_values = [
-        "@bazel_tools//platforms:osx",
-        "@bazel_tools//platforms:aarch64",
+        "@bazel_tools//platforms:macos",
+        "@bazel_tools//platforms:arm64",
     ],
     visibility = ["//visibility:public"],
 )
 
 config_setting(
-    name = "osx_x86_64",
+    name = "darwin_x86_64",
     constraint_values = [
-        "@bazel_tools//platforms:osx",
+        "@bazel_tools//platforms:macos",
         "@bazel_tools//platforms:x86_64",
     ],
     visibility = ["//visibility:public"],
